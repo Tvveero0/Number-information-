@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Number Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Search Number Information</h2>
+        <input type="text" id="phoneNumber" placeholder="Enter phone number">
+        <br>
+        <input type="submit" value="Search" onclick="searchNumber()">
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        // Sample JSON data representing phone number info
+        const phoneData = {
+            "03088588638": {
+                "name": "John Doe",
+                "location": "Karachi, Pakistan",
+                "provider": "Telenor"
+            },
+            "03001234567": {
+                "name": "Jane Smith",
+                "location": "Lahore, Pakistan",
+                "provider": "Jazz"
+            }
+        };
+
+        // Function to search number
+        function searchNumber() {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const resultDiv = document.getElementById('result');
+
+            // Clear previous result
+            resultDiv.innerHTML = '';
+
+            // Check if the number exists in the JSON data
+            if (phoneData[phoneNumber]) {
+                const info = phoneData[phoneNumber];
+                resultDiv.innerHTML = `
+                    <p><strong>Name:</strong> ${info.name}</p>
+                    <p><strong>Location:</strong> ${info.location}</p>
+                    <p><strong>Provider:</strong> ${info.provider}</p>
+                `;
+            } else {
+                resultDiv.innerHTML = `<p>Phone number not found.</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
